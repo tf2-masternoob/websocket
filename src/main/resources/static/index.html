@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TF2Center Websocket test</title>
+	<script type="text/javascript">
+	
+	console.info("openWebSocket()");
+	try {
+		//TODO: deal with https as well
+		ws = new WebSocket("ws://"+window.location.host+"/ws");
+		ws.onopen = function(event) {
+			console.debug("websocket successfully established");
+		};
+		ws.onclose = function(event) {
+			console.warn("websocket disconnected; reconnecting...");
+			setTimeout(function(){window.location.reload();}, 2000);	
+		};
+		ws.onmessage = function(event) {
+			wsOpened=true;
+			console.debug(event.data);
+			try {
+				//eval(event.data);
+				ws.send("RETURNING: "+event.data);
+			} catch (e) {
+				console.error("failed to process data: "+e);
+			}
+		};
+		ws.onerror = function(event) {
+			console.error("ws.onerror(): "+event);
+		}
+	} catch (e) {
+		console.error(e);
+	}
+	
+	</script>
+</head>
+<body>
+</body>
+</html>

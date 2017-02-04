@@ -41,6 +41,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- force HTTP/2 for Undertow: https://vanwilgenburg.wordpress.com/2016/04/01/spring-boot-http2 -->
+		<!-- <dependency>
+			<groupId>org.mortbay.jetty.alpn</groupId>
+			<artifactId>alpn-boot</artifactId>
+			<version>8.1.11.v20170118</version>
+		</dependency> -->
+
 	</dependencies>
 
 	<repositories>

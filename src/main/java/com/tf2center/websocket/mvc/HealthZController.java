@@ -1,5 +1,8 @@
 package com.tf2center.websocket.mvc;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,7 +18,12 @@ public class HealthZController {
 	}
 
 	@RequestMapping(URL)
-	public String healthz() {
+	public String healthz() throws UnknownHostException {
+		for (InetAddress addr : InetAddress.getAllByName(null)) {
+			System.out.println(addr.getHostAddress());
+		}
+		System.out.println(InetAddress.getLocalHost().getHostAddress());
+		
 		if (!hasJustStarted()) {
 			throw new RuntimeException("Health check failed");
 		}

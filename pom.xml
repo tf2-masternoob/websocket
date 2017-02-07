@@ -16,7 +16,6 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		<docker.image.prefix>tf2center/springboot</docker.image.prefix>
 	</properties>
 
 	<dependencies>
@@ -104,13 +103,13 @@
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.4.13</version>
 				<configuration>
-					<!--<imageName>${docker.image.prefix}/${project.artifactId}</imageName> -->
-					<imageName>${docker.image.prefix}</imageName>
+					<imageName>tf2center/springboot</imageName>
+					<baseImage>frolvlad/alpine-oraclejdk8:slim</baseImage>
+					<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
 					<imageTags>
 						<imageTag>${project.version}</imageTag>
 						<imageTag>latest</imageTag>
 					</imageTags>
-					<dockerDirectory>src/main/docker</dockerDirectory>
 					<serverId>docker-hub</serverId>
 					<resources>
 						<resource>

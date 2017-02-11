@@ -31,6 +31,6 @@ public class HealthZController {
 	}
 
 	private static boolean hasJustStarted() {
-		return System.currentTimeMillis() - startupTime < 30 * 1000;
+		return System.currentTimeMillis() - startupTime < (60 * 1000 + Math.random()*20); //1 min + ~10 sec
 	}
 }
